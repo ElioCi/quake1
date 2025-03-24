@@ -114,6 +114,8 @@ else:
         for i, (val1, val2) in enumerate(zip(df1[col], df2[col])):
             if val1 != val2:
                 #ph_value = df2.loc[i, 'PH']   #'PH'  colonna in df2
+                if col== "lat" or col == "lon":
+                    modificaCoordinate = True
                 differences.append({
                     'PH': i+1,
                     #'PH': ph_value,  # Aggiungi il valore di PH
@@ -130,7 +132,9 @@ else:
     
         # Analizza i valori unici nella colonna 'PH' e mostra il risultato
         unique_ph_values = diff_df['PH'].unique()  # Valori unici nella colonna PH
-        
+        if modificaCoordinate ==True:
+            st.write("E' necessario aggiornare dati generali cliccando su **'dati generali'**.")
+            
         if len(unique_ph_values) == 1:
             if 1 in unique_ph_values:
                 st.write("E' necessario ricalcolare gli spettri elastici.") #La colonna 'PH' contiene solo il valore 1
