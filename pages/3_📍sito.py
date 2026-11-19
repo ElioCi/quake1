@@ -128,6 +128,9 @@ with st.sidebar:
             st.session_state.needs_update = True
             st.rerun()
 
+    if st.button("Aggiorna Parametri"):
+        st.switch_page("pages/2_📝dati_generali.py")  # Cambia pagina a "dati_generali
+
 # **Creazione della mappa**
 if "mappa" not in st.session_state or st.session_state.needs_update:
     st.session_state.mappa = folium.Map(location=[st.session_state.lat, st.session_state.lon], zoom_start=st.session_state.zoom, min_zoom = min_zoom_level)
